@@ -3,12 +3,8 @@
 #include <cassert>
 #include "BazaTestu.hh"
 
-using namespace std;
+//tablica typu struktualnego zawierajaca tresc latwego testu
 
-/*
- * Tablica, ktora jest widoczna tylko w tym module.
- * Zawiera ona tresc latwego testu.
- */
 static WyrazenieZesp  TestLatwy[] =
   { {{2,1}, Op_Dodaj, {1,2}},
     {{1,0}, Op_Odejmij, {0,1}},
@@ -16,15 +12,12 @@ static WyrazenieZesp  TestLatwy[] =
     {{4,8}, Op_Dziel, {1,0}},
   };
 
-/*
- * Analogicznie zdefiniuj test "trudne"
- *
- */
-
-
-
-
-
+static WyrazenieZesp  TestTrudny[] =
+  { {{2.5,-1}, Op_Dodaj, {-1.2,12}},
+    {{0,-5.5}, Op_Odejmij, {13.2,-4.1}},
+    {{2.5,-3}, Op_Mnoz, {-2.5,9}},
+    {{4,8}, Op_Dziel, {5,-3}},
+  };
 /*
  * W bazie testu ustawia wybrany test jako biezacy test i indeks pytania
  * ustawia na pierwsze z nich.
@@ -71,16 +64,22 @@ void UstawTest( BazaTestu *wskBazaTestu, WyrazenieZesp *wskTabTestu, unsigned in
  *              zainicjalizowany,
  *       false - w przypadku przeciwnym.
  */
+
+
 bool InicjalizujTest( BazaTestu  *wskBazaTestu, const char *sNazwaTestu )
 {
   if (!strcmp(sNazwaTestu,"latwy")) {
+    BazaL={TestLatwy,sizeof(TestLatwy)/sizeof(WyrazenieZesp),1};
+    *wskBazaTestu=BazaL;
     UstawTest(wskBazaTestu,TestLatwy,sizeof(TestLatwy)/sizeof(WyrazenieZesp));
     return true;
+  }    
+  else if (!strcmp(sNazwaTestu,"trudny")) {
+    BazaT={TestTrudny,sizeof(TestTrudny)/sizeof(WyrazenieZesp),1};
+    *wskBazaTestu=BazaL;
+    UstawTest(wskBazaTestu,TestTrudny,sizeof(TestTrudny)/sizeof(WyrazenieZesp));
+    return true;
   }
-  /*
-   * Analogicznie zrob inicjalizacje dla testu trudne
-   */
-
   cerr << "Otwarcie testu '" << sNazwaTestu << "' nie powiodlo sie." << endl;
   return false;
 }
