@@ -19,6 +19,6 @@ struct WyrazenieZesp {
 //oraz druga ktora oblicza wartosc tego wyrazenia
 
 void Wyswietl(WyrazenieZesp  WyrZ);
-LZespolona Oblicz(WyrazenieZesp  WyrZ);
+void Oblicz(WyrazenieZesp  WyrZ);
 
 #endif

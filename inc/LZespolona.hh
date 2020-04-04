@@ -8,11 +8,6 @@ struct  LZespolona {
   double   im;    // Pole repezentuje czesc urojona
 };
 
-
-ostream & operator << ( ostream & StrmWy, LZespolona Lz)
-{
-    return StrmWy << "(" << Lz.re << std::showpos << Lz.im << std::noshowpos << 'i' <<")";
-}
 //deklaracja funkcji operujacych na liczbach zespolonych przy wykorzystaniu przeciazen operatorow
 //wiecej informacji o nich w pliku naglowkowym
 

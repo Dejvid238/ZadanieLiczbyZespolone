@@ -1,13 +1,13 @@
-#include <iostream>
 #include "BazaTestu.hh"
 
-//deklaracja przestrzeni ktore beda uzyte w programie
+#include <iostream>
+#include <cassert>
 
+//deklaracja przestrzeni ktore beda uzyte w programie
+using std::string;
+using std::endl;
 using std::cout;
 using std::cin;
-using std::string;
-using std::ostream;
-using std::endl;
 
 int main(int argc, char **argv)
 {
@@ -19,32 +19,31 @@ int main(int argc, char **argv)
     return 1;
   }
 
-BazaTestu *BazaT = new BazaTestu;
+BazaTestu   BazaT = { nullptr, 0, 0 };
 
-InicjalizujTest(BazaT,argv[1]);
-  if (InicjalizujTest(BazaT,argv[1] == true) 
+  if (InicjalizujTest(&BazaT,argv[1]) == true) 
     {
       cout << endl;
       cout << " Start testu arytmetyki zespolonej. Wybrana opcja: Test " << argv[1] << endl << endl;
     }
   else 
     {
-      cerr<<"Test nie moze zostac rozpoczety..."<<endl;
+      cout<<"Test nie moze zostac rozpoczety..."<<endl;
       exit(0);
     }
 
 
 
-
-
-
 WyrazenieZesp   WyrZ_PytanieTestowe;
+
 
 while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) 
 {
   cout << "Podaj wynik operacji: ";
-  cout << WyrZ_PytanieTestowe.Arg1.re << endl;
+  Wyswietl(WyrZ_PytanieTestowe);
+  cout<<endl;
 }
+
 
   
   cout << endl;

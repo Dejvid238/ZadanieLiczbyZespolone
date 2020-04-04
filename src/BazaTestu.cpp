@@ -1,9 +1,11 @@
-#include <iostream>
-#include <cstring>
-#include <cassert>
 #include "BazaTestu.hh"
+#include <cstring>
+#include <stdlib.h>
+#include <iostream>
 
 //tablica typu struktualnego zawierajaca tresc latwego testu
+using std::endl;
+using std::cout;
 
 static WyrazenieZesp  TestLatwy[] =
   { {{2,1}, Op_Dodaj, {1,2}},
@@ -69,18 +71,18 @@ void UstawTest( BazaTestu *wskBazaTestu, WyrazenieZesp *wskTabTestu, unsigned in
 bool InicjalizujTest( BazaTestu  *wskBazaTestu, const char *sNazwaTestu )
 {
   if (!strcmp(sNazwaTestu,"latwy")) {
-    BazaL={TestLatwy,sizeof(TestLatwy)/sizeof(WyrazenieZesp),1};
+    BazaTestu BazaL={TestLatwy,sizeof(TestLatwy)/sizeof(WyrazenieZesp),1};
     *wskBazaTestu=BazaL;
     UstawTest(wskBazaTestu,TestLatwy,sizeof(TestLatwy)/sizeof(WyrazenieZesp));
     return true;
   }    
   else if (!strcmp(sNazwaTestu,"trudny")) {
-    BazaT={TestTrudny,sizeof(TestTrudny)/sizeof(WyrazenieZesp),1};
+    BazaTestu BazaL={TestTrudny,sizeof(TestTrudny)/sizeof(WyrazenieZesp),1};
     *wskBazaTestu=BazaL;
     UstawTest(wskBazaTestu,TestTrudny,sizeof(TestTrudny)/sizeof(WyrazenieZesp));
     return true;
   }
-  cerr << "Otwarcie testu '" << sNazwaTestu << "' nie powiodlo sie." << endl;
+  cout << "Otwarcie testu '" << sNazwaTestu << "' nie powiodlo sie." << endl;
   return false;
 }
 
@@ -113,3 +115,5 @@ bool PobierzNastpnePytanie( BazaTestu  *wskBazaTestu, WyrazenieZesp *wskWyrazeni
   ++wskBazaTestu->IndeksPytania;
   return true;
 }
+
+

@@ -1,5 +1,8 @@
 #include "LZespolona.hh"
 
+#include <cmath>
+using std::sqrt;
+
 //opisane ponizej funkcje jako argumenty przyjmuja liczby typu LZespolona oraz zwracaja tenze typ (z wyjatkiem modulu)
 
 //funkcja dodajaca do siebie 2 liczby zespolone, jako wynik zwraca sume
@@ -68,6 +71,6 @@ double modul(LZespolona Skl1)
 {
     LZespolona Wynik;
     Wynik.re=sqrt((Skl1.re*Skl1.re)+(Skl1.im*Skl1.im));
-    Wynik.im=NULL;
+    Wynik.im=0;
     return Wynik.re;
 }

@@ -1,10 +1,18 @@
 #include "WyrazenieZesp.hh"
+#include <iostream>
 
+using std::cout;
+using std::cin;
+using std::endl;
 
-/*
- * Tu nalezy zdefiniowac funkcje, ktorych zapowiedzi znajduja sie
+ /* Tu nalezy zdefiniowac funkcje, ktorych zapowiedzi znajduja sie
  * w pliku naglowkowym.
  */
+std::ostream & operator << ( std::ostream & StrmWy, LZespolona Lz)
+{
+    return StrmWy << "(" << Lz.re << std::showpos << Lz.im << std::noshowpos << 'i' <<")";
+}
+
 void Wyswietl (WyrazenieZesp WyrZ){
     char znak;
     switch (WyrZ.Op)
@@ -28,8 +36,9 @@ void Wyswietl (WyrazenieZesp WyrZ){
     cout<<WyrZ.Arg1<<znak<<WyrZ.Arg2;
 }
 
-LZespolona Oblicz (WyrazenieZesp  WyrZ)
+void Oblicz (WyrazenieZesp  WyrZ)
 {
+    LZespolona TwojWynik;
     switch (WyrZ.Op)
         {
             case Op_Dodaj:
@@ -48,5 +57,5 @@ LZespolona Oblicz (WyrazenieZesp  WyrZ)
             cout<<"nic tu wiecej nie ma"<<endl;
             break;
         }
-        return TwojWynik;
+        cout << TwojWynik;
 }
