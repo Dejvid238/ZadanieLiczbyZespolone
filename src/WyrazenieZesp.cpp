@@ -5,15 +5,18 @@ using std::cout;
 using std::cin;
 using std::endl;
 
- /* Tu nalezy zdefiniowac funkcje, ktorych zapowiedzi znajduja sie
- * w pliku naglowkowym.
- */
+//dyrektywa dla strumienia wyjsciowego przeksztalcajaca wybrane wyrazenia wedle okreslonego schematu
+//w tym wypadku jest to operacja na liczbie zespolonej: przy wykryciu struktury liczby zespolonej
+//dyrektywa umieszcza ja w nawiasach polokraglych oraz dopisuje 'i' przy liczbie reprezentujacej czesc urojona
+
 std::ostream & operator << ( std::ostream & StrmWy, LZespolona Lz)
 {
     return StrmWy << "(" << Lz.re << std::showpos << Lz.im << std::noshowpos << 'i' <<")";
 }
 
-void Wyswietl (WyrazenieZesp WyrZ){
+//cialo funkcji wyswietlajacej wyrazenie zespolone uprzednio wczytane z tablicy reprezentujacej baze testu
+
+void Wyswietl (WyrazenieZesp &WyrZ){
     char znak;
     switch (WyrZ.Op)
         {
@@ -36,8 +39,18 @@ void Wyswietl (WyrazenieZesp WyrZ){
     cout<<WyrZ.Arg1<<znak<<WyrZ.Arg2;
 }
 
-void Oblicz (WyrazenieZesp  WyrZ)
+//cialo funkcji wyswietlajacej liczbe zespolona 
+
+void Wyswietl(LZespolona &skl)
 {
+    cout<<skl;
+}
+
+//cialo funkcji obliczajacej wartosc dzialania matematycznego na liczbach zespolonych po jego wczesniejszej interpretacji
+//z wykorzystaniem funkcji switch
+
+LZespolona Oblicz (WyrazenieZesp  &WyrZ)
+{   
     LZespolona TwojWynik;
     switch (WyrZ.Op)
         {
@@ -57,5 +70,40 @@ void Oblicz (WyrazenieZesp  WyrZ)
             cout<<"nic tu wiecej nie ma"<<endl;
             break;
         }
-        cout << TwojWynik;
+        return TwojWynik;
+}
+
+//cialo funkcji porownujacej wynik wyrazenia wpisanego przez uzytkownika z wartoscia poprawna
+//w przypadku braku ktoregokolwiek elementu w zapisie wyniku program informuje o tym uzytkownika
+
+bool Wczytaj (LZespolona &skl)
+{
+    LZespolona Odpowiedz;
+    int ZmPomocnik;
+    cout<<"Twoja odpowiedz: ";
+    char znak;
+    cin>>znak;
+    if (znak!='(') ZmPomocnik=1;
+    cin>>Odpowiedz.re>>Odpowiedz.im;
+    if((skl.re!=Odpowiedz.re) || (skl.im!=Odpowiedz.im)) ZmPomocnik=2;
+    cin>>znak;
+    if (znak!='i') ZmPomocnik=1;
+    cin>>znak;
+    if (znak!=')') ZmPomocnik=1;
+        switch(ZmPomocnik)
+        {
+            case 1:
+            cout<<"Blad w zapisie liczby. Upewnij sie czy liczba jest umieszczona w nawiasach i posiada identyfikator 'i'";
+            cout<<" dla czesci urojonej. ";
+            cout<<endl;
+            return false;
+            break;
+            case 2:
+            cout<<"Blad. Nieprawidlowy wynik. ";
+            return false;
+            break;
+            default:
+            return true;
+            break;
+        }
 }

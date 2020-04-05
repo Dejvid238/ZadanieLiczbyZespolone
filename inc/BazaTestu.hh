@@ -2,14 +2,23 @@
 #define BAZATESTU_HH
 #include "WyrazenieZesp.hh"
 
-
+  
 //deklaracja struktury BazaTestu ktora jako argumenty przyjmuje wskaznik na wybrana tablice zawierajaca tresc testu
 //calkowita ilosc pytan (bedaca wymiarem tablicy) oraz numer aktualnego pytania
 
-struct BazaTestu {
+struct BazaTestu 
+{
   WyrazenieZesp  *wskTabTestu;   /* Wskaznik na tablice zawierajaca pytania testu */
   unsigned int    IloscPytan;    /* Ilosc wszystkich pytan */
   unsigned int    IndeksPytania; /* Numer pytania, ktore ma byc pobrane jako nastepne */
+};
+
+//deklaracja struktury odpowiadajacej za zliczanie poprawnych odpowiedzi udzielonych w tescie
+
+struct Statystyki
+{
+  int dobre;
+  int zle;  
 };
 
 //deklaracja funkcji ktora ustawia zestaw pytan na podstawie wyboru uzytkownika 
@@ -24,5 +33,8 @@ bool InicjalizujTest( BazaTestu  *wskBazaTestu, const char*  sNazwaTestu );
 
 bool PobierzNastpnePytanie( BazaTestu  *wskBazaTestu,  WyrazenieZesp *wskWyr );
 
+//deklaracja funkcji wyswietlajacej rezultat ukonczonego testu
+
+void Inicjuj (Statystyki &st);
 
 #endif

@@ -7,7 +7,7 @@ using std::sqrt;
 
 //funkcja dodajaca do siebie 2 liczby zespolone, jako wynik zwraca sume
 
-LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2)
+LZespolona  operator + (LZespolona  &Skl1,  LZespolona  &Skl2)
 {
   LZespolona  Wynik;
 
@@ -18,7 +18,7 @@ LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2)
 
 //funkcja odejmujaca 2 liczby zespolone od siebie, jako wynik zwraca roznice
 
-LZespolona operator - (LZespolona Skl1, LZespolona Skl2)
+LZespolona operator - (LZespolona &Skl1, LZespolona &Skl2)
 {
     LZespolona Wynik;
     Wynik.re = Skl1.re - Skl2.re;
@@ -28,7 +28,7 @@ LZespolona operator - (LZespolona Skl1, LZespolona Skl2)
 
 //funkcja ktora mnozy 2 liczby zespolone przez siebie, jako wynik zwraca iloczyn 
 
-LZespolona operator * (LZespolona Skl1, LZespolona Skl2)
+LZespolona operator * (LZespolona &Skl1, LZespolona &Skl2)
 {
     LZespolona Wynik;
     Wynik.re=(Skl1.re*Skl2.re)-(Skl1.im*Skl2.im);
@@ -38,7 +38,7 @@ LZespolona operator * (LZespolona Skl1, LZespolona Skl2)
 
 //funkcja wykonujaca dzielenie 2 liczb zespolonych, jako wynik zwraca iloraz 
 
-LZespolona operator / (LZespolona Skl1, LZespolona Skl2)
+LZespolona operator / (LZespolona &Skl1, LZespolona &Skl2)
 {
     LZespolona Wynik;
 
@@ -56,7 +56,7 @@ LZespolona operator / (LZespolona Skl1, LZespolona Skl2)
 
 //funkcja zwracajaca sprzezenie liczby zespolonej podanej jako argument
 
-LZespolona sprzezenie (LZespolona Skl1)
+LZespolona sprzezenie (LZespolona &Skl1)
 {
 
         LZespolona Wynik;
@@ -67,7 +67,7 @@ LZespolona sprzezenie (LZespolona Skl1)
 
 //funkcja wyliczajaca modul z liczby zespolonej podanej jako argument
 
-double modul(LZespolona Skl1)
+double modul(LZespolona &Skl1)
 {
     LZespolona Wynik;
     Wynik.re=sqrt((Skl1.re*Skl1.re)+(Skl1.im*Skl1.im));

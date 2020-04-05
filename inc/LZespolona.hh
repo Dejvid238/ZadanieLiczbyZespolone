@@ -8,14 +8,15 @@ struct  LZespolona {
   double   im;    // Pole repezentuje czesc urojona
 };
 
+
 //deklaracja funkcji operujacych na liczbach zespolonych przy wykorzystaniu przeciazen operatorow
 //wiecej informacji o nich w pliku naglowkowym
 
-LZespolona  operator + (LZespolona,LZespolona);
-LZespolona operator - (LZespolona,LZespolona);
-LZespolona operator * (LZespolona,LZespolona);
-LZespolona operator / (LZespolona,LZespolona);
-LZespolona sprzezenie (LZespolona);
-double modul (LZespolona);
+LZespolona  operator + (LZespolona &,LZespolona &);
+LZespolona operator - (LZespolona &,LZespolona &);
+LZespolona operator * (LZespolona &,LZespolona &);
+LZespolona operator / (LZespolona &,LZespolona &);
+LZespolona sprzezenie (LZespolona &);
+double modul (LZespolona &);
 
 #endif
